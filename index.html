@@ -1,28 +1,30 @@
-//Put all the scripts in header allowed the program to work for some reason
 <!DOCTYPE html>
 <html>
 <head>
-  <title>P5 System</title>
+  <title>Generative Crystals</title>
+  <!-- Add the p5.js and p5.svg.js libraries from CDNs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="https://unpkg.com/p5.js-svg@1.1.1"></script>
+  <!-- Include the local javascript files to allow them to "access" each other -->
   <script src="sketch.js"></script>
   <script src="Layers.js"></script>
   <script src="Crystal.js"></script>
   <script src="helpers.js"></script>
 
-
 </head>
 <body>
   <style>
     body {
-      margin: 0;
+      margin-left: auto; 
+      margin-right: auto;
       padding: 0;
     }
 
     button {
-      float:left;
+      float:center;
     }
   </style>
-  <button onClick="saveSVG()">save SVG</button>
+  <!-- define the event or function called when the button is pressed -->
+  <button onClick="saveSVG()">Save Vector Image</button>
 </body>
 </html>
