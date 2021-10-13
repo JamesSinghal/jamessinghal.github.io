@@ -1,3 +1,15 @@
+/* James Singhal   10/12/21
+Information Engineering  '21-22    St. Mark's School of Texas
+
+"Generative Snowflake Challenge"
+Code Abstract: "Use random choice to create generative snowflakes"
+Source(s): Designing Generative Systems in p5.js - Matthew Epler
+
+This program is free software: you can redistribute it and/or 
+modify it under the terms of the GNU General Public License v3
+ as published by the Free Software Foundation
+*/
+
 // Define the Crystal class for use later; the class allows us to easily reuse code and varibles for the many different crystals drawn
 
 class Crystal { 

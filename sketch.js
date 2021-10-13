@@ -1,9 +1,9 @@
-/* Evan Lai   10/13/21
+/* James Singhal   10/12/21
 Information Engineering  '21-22    St. Mark's School of Texas
 
 "Generative Snowflake Challenge"
-Code Abstract: "To generate Snowflakes that randomly change and then to export them as a svg"
-Source(s): Designing Generative Systems w/ P5.js by Matthew Epler
+Code Abstract: "Use random choice to create generative snowflakes"
+Source(s): Designing Generative Systems in p5.js - Matthew Epler
 
 This program is free software: you can redistribute it and/or 
 modify it under the terms of the GNU General Public License v3
@@ -11,14 +11,13 @@ modify it under the terms of the GNU General Public License v3
 */
 
 
-
-const CRYSTAL_SIZE = 200
-const SIDES = 10
+const CRYSTAL_SIZE = 140
+const SIDES = 4
 
 // layout
 const MARGIN = CRYSTAL_SIZE / 2
-const COLUMNS = 5
-const ROWS = 2
+const COLUMNS = 8
+const ROWS = 3
 const PADDING = CRYSTAL_SIZE * 0.2
 const GRIDBOX = CRYSTAL_SIZE + PADDING
 const START = (CRYSTAL_SIZE / 2) + MARGIN

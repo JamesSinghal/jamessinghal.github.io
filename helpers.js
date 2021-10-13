@@ -1,4 +1,15 @@
-//This class basically compiles individual classes/functions that draw specific shapes to form the snowflake
+/* James Singhal   10/12/21
+Information Engineering  '21-22    St. Mark's School of Texas
+
+"Generative Snowflake Challenge"
+Code Abstract: "Use random choice to create generative snowflakes"
+Source(s): Designing Generative Systems in p5.js - Matthew Epler
+
+This program is free software: you can redistribute it and/or 
+modify it under the terms of the GNU General Public License v3
+ as published by the Free Software Foundation
+*/
+
 const hexagon = (posX, posY, radius) => {           //Forms hexagons           
   const rotAngle = 360 / 6
   beginShape()
