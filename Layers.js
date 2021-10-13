@@ -206,7 +206,7 @@ const steppedHexagons = (state) => {
       for (let i = 1; i < state.numSteps + 1; i++) {
         push()
         stroke(getRandomFromCOLOR_ARRAY())
-        rotate(i*3)
+        rotate(i*1)
         hexagon(0, 0, state.centerOffset + (i * state.singleStep))
         pop()
       }

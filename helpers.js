@@ -20,7 +20,7 @@ function hexagon(xPosition, yPosition, radius) {
   const rotAngle = 360 / 12
   beginShape()
   for (let i = 0; i < 12; i++) {
-    const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*20), i * rotAngle)
+    const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*30), i * rotAngle)
     vertex(thisVertex.x, thisVertex.y)
   }
   endShape(CLOSE)
