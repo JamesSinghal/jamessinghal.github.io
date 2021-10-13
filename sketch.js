@@ -12,7 +12,7 @@ modify it under the terms of the GNU General Public License v3
 
 // Define constants for crystals
 const CRYSTALWIDTH = 140
-const SECTIONS = 4
+const SECTIONS = 6
 
 // Define grid constants
 const MARGIN = CRYSTALWIDTH / 2

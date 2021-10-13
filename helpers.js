@@ -86,7 +86,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.2
+    weight: 0.5
   },
   {
     name: 'Centered Shape',
@@ -94,7 +94,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.5
+    weight: 0.2
   },
   {
     name: 'Circles',
@@ -102,7 +102,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.6
+    weight: 0.3
   },
   {
     name: 'Simple Lines',
@@ -118,7 +118,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.4
+    weight: 0.6
   },
   {
     name: 'Ring of Shapes',
@@ -126,7 +126,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.7
+    weight: 0.3
   },
   {
     name: 'Stepped Hexagons',
@@ -134,7 +134,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.5
+    weight: 0.1
   },
   {
     name: 'Test Lines',

@@ -204,7 +204,10 @@ const steppedHexagons = (state) => {
       //translate(width / 2, height / 2)
       rotate(state.angle / 2) 
       for (let i = 1; i < state.numSteps + 1; i++) {
+        push()
+        rotate(i*10)
         hexagon(0, 0, state.centerOffset + (i * state.singleStep))
+        pop()
       }
       pop()
     }
