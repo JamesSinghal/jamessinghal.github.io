@@ -10,19 +10,19 @@ modify it under the terms of the GNU General Public License v3
  as published by the Free Software Foundation
 */
 
-const hexagon = (posX, posY, radius) => {           //Forms hexagons           
+const hexagon = (xPosition, yPosition, radius) => {           //Forms hexagons           
   const rotAngle = 360 / 6
   beginShape()
   for (let i = 0; i < 6; i++) {
-    const thisVertex = pointOnCircle(posX, posY, radius, i * rotAngle)
+    const thisVertex = pointOnCircle(xPosition, yPosition, radius, i * rotAngle)
     vertex(thisVertex.x, thisVertex.y)
   }
   endShape(CLOSE)
 }
 
-const pointOnCircle = (posX, posY, radius, angle) => { // Forms the Poins and repating points in the snowflake  
-  const x = posX + radius * cos(angle)
-  const y = posY + radius * sin(angle)
+const pointOnCircle = (xPosition, yPosition, radius, angle) => { // Forms the Poins and repating points in the snowflake  
+  const x = xPosition + radius * cos(angle)
+  const y = yPosition + radius * sin(angle)
   return createVector(x, y)
 }
 

@@ -31,8 +31,8 @@ function setup() {
   createCanvas(totalX, totalY, SVG)
 
   PALETTE = [
-    color(random(1)*255, random(1)*255, random(1)*255), // pink
-    color(random(1)*255, random(1)*255, random(1)*255) // blue
+    color(random(1)*100+155, random(1)*100+155, random(1)*100+155), // Light random
+    color(random(1)*150, random(1)*150, random(1)*150) // Dark random
   ]
 
   noLoop()
@@ -45,9 +45,9 @@ function draw() {
   // continue to do this until we run out of room
   for (let x = 0; x < COLUMNS; x++) {
     for (let y = 0; y < ROWS; y++) {
-      const posX = START + (x * GRIDBOX)
-      const posY = START + (y * GRIDBOX)
-      const crystal = makeCrystal({x: posX, y: posY})
+      const xPosition = START + (x * GRIDBOX)
+      const yPosition = START + (y * GRIDBOX)
+      const crystal = makeCrystal({x: xPosition, y: yPosition})
       console.log(crystal)
       ALL_CRYSTALS.push(crystal)
     }
