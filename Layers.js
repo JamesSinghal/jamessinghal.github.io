@@ -12,23 +12,23 @@ modify it under the terms of the GNU General Public License v3
 
 
 const state = {
-  sides: SIDES,
+  SECTIONS: SECTIONS,
   stepsOut: 8,
   thinStroke: 1,
   thickStroke: 3
 }
 
 const setState = (state) => {
-  state.numShapes = state.sides,
+  state.numShapes = state.SECTIONS,
   state.angle = 360 / state.numShapes,
-  state.singleStep = (CRYSTAL_SIZE / 2) / state.stepsOut,
-  state.layerColor = getRandomFromPalette()
+  state.singleStep = (CRYSTALWIDTH / 2) / state.stepsOut,
+  state.layerColor = getRandomFromCOLOR_ARRAY()
   return state
 }
 
 const circles = (state) => {
-  state.shapeSize = (CRYSTAL_SIZE / 2) * 0.93
-  state.position = (CRYSTAL_SIZE / 2) - (state.shapeSize / 2)
+  state.shapeSize = (CRYSTALWIDTH / 2) * 0.93
+  state.position = (CRYSTALWIDTH / 2) - (state.shapeSize / 2)
   
   return ({
     name: 'circles',
@@ -50,11 +50,11 @@ const circles = (state) => {
 
 const simpleLines = (state) => {
   state.numSteps = randomSelectTwo() ? state.stepsOut : int(state.stepsOut * 1.25)
-  state.step = (CRYSTAL_SIZE / 2) / state.numSteps
+  state.step = (CRYSTALWIDTH / 2) / state.numSteps
   state.start = floor(random(0, state.numSteps))
   state.stop = floor(random(state.start, state.numSteps + 1))
   state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke
-  state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2
+  state.numShapes = randomSelectTwo() ? state.SECTIONS : state.SECTIONS * 2
   state.angle = 360 / state.numShapes
   
   return ({
@@ -88,9 +88,9 @@ const outlineShape = (state) => {
       push()
       //translate(width/2, height/2)
       if (state.hexagonTrue) {
-        hexagon(0, 0, CRYSTAL_SIZE / 2)
+        hexagon(0, 0, CRYSTALWIDTH / 2)
       } else {
-        ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
+        ellipse(0, 0, CRYSTALWIDTH, CRYSTALWIDTH)
       }
       pop()
     }
@@ -98,7 +98,7 @@ const outlineShape = (state) => {
 }
 
 const dottedLines = (state) => {                           
-  state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2
+  state.numShapes = randomSelectTwo() ? state.SECTIONS : state.SECTIONS * 2
   state.angle = 360 / state.numShapes
   state.shapeSize = 3
   state.centerOffset = state.singleStep
@@ -112,7 +112,7 @@ const dottedLines = (state) => {
       push()
       //translate(width / 2, height / 2)
       for(let i = 0; i <= state.numShapes; i++) {
-        for(let x = state.centerOffset; x < CRYSTAL_SIZE / 2; x += state.singleStep) {
+        for(let x = state.centerOffset; x < CRYSTALWIDTH / 2; x += state.singleStep) {
           rect(x, 0, state.shapeSize, state.shapeSize)
         }
         rotate(state.angle)
@@ -189,8 +189,8 @@ const ringOfShapes = (state) => {
 
 const steppedHexagons = (state) => {                 
   state.numSteps = randomSelectTwo() ? state.stepsOut : state.stepsOut * 1.25
-  state.centerOffset = (CRYSTAL_SIZE / 2) * 0.15
-  state.singleStep = ((CRYSTAL_SIZE / 2) - state.centerOffset) / state.numSteps
+  state.centerOffset = (CRYSTALWIDTH / 2) * 0.15
+  state.singleStep = ((CRYSTALWIDTH / 2) - state.centerOffset) / state.numSteps
   state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke
 
   return ({

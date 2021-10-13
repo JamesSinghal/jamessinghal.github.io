@@ -10,27 +10,27 @@ modify it under the terms of the GNU General Public License v3
  as published by the Free Software Foundation
 */
 
+// Define constants for crystals
+const CRYSTALWIDTH = 140
+const SECTIONS = 4
 
-const CRYSTAL_SIZE = 140
-const SIDES = 4
-
-// layout
-const MARGIN = CRYSTAL_SIZE / 2
+// Define grid constants
+const MARGIN = CRYSTALWIDTH / 2
 const COLUMNS = 8
 const ROWS = 3
-const PADDING = CRYSTAL_SIZE * 0.2
-const GRIDBOX = CRYSTAL_SIZE + PADDING
-const START = (CRYSTAL_SIZE / 2) + MARGIN
+const PADDING = CRYSTALWIDTH * 0.2
+const GRID_PATTERN = CRYSTALWIDTH + PADDING
+const START = (CRYSTALWIDTH / 2) + MARGIN
 
-let PALETTE = []
-ALL_CRYSTALS = []
+let COLOR_ARRAY = []
+CRYSTAL_ARRAY = []
 
 function setup() {
-  const totalX = START + GRIDBOX * COLUMNS
-  const totalY = START + GRIDBOX * ROWS
+  const totalX = START + GRID_PATTERN * COLUMNS
+  const totalY = START + GRID_PATTERN * ROWS
   createCanvas(totalX, totalY, SVG)
 
-  PALETTE = [
+  COLOR_ARRAY = [
     color(random(1)*100+155, random(1)*100+155, random(1)*100+155), // Light random
     color(random(1)*150, random(1)*150, random(1)*150) // Dark random
   ]
@@ -45,15 +45,15 @@ function draw() {
   // continue to do this until we run out of room
   for (let x = 0; x < COLUMNS; x++) {
     for (let y = 0; y < ROWS; y++) {
-      const xPosition = START + (x * GRIDBOX)
-      const yPosition = START + (y * GRIDBOX)
+      const xPosition = START + (x * GRID_PATTERN)
+      const yPosition = START + (y * GRID_PATTERN)
       const crystal = makeCrystal({x: xPosition, y: yPosition})
       console.log(crystal)
-      ALL_CRYSTALS.push(crystal)
+      CRYSTAL_ARRAY.push(crystal)
     }
   }
 
-  ALL_CRYSTALS.forEach(crystal => {
+  CRYSTAL_ARRAY.forEach(crystal => {
     drawCrystal(crystal)
   })
 }

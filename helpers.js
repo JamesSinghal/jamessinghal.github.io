@@ -31,13 +31,13 @@ const randomSelectTwo = () => {
   return rando > 0.5 ? true : false
 }
 
-const getRandomFromPalette = () => {
-  const rando = floor(random(0, PALETTE.length))
-  return PALETTE[rando]
+const getRandomFromCOLOR_ARRAY = () => {
+  const rando = floor(random(0, COLOR_ARRAY.length))
+  return COLOR_ARRAY[rando]
 }
 
 const testLines = (state) => {
-  state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2
+  state.numShapes = randomSelectTwo() ? state.SECTIONS : state.SECTIONS * 2
   state.angle = 360 / state.numShapes
 
   return ({
@@ -51,12 +51,12 @@ const testLines = (state) => {
       // translate(width / 2, height / 2) //**
       if (state.lines) {
         for (let i = 0; i < 360 - 0.1; i += state.angle) { 
-          line(0, 0, 0, CRYSTAL_SIZE / 2)                  
+          line(0, 0, 0, CRYSTALWIDTH / 2)                  
           rotate(state.angle)
         }
       }
       if (state.circle) {
-        ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)            
+        ellipse(0, 0, CRYSTALWIDTH, CRYSTALWIDTH)            
       }
       pop()
     }
