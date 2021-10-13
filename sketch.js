@@ -1,3 +1,17 @@
+/* Evan Lai   10/13/21
+Information Engineering  '21-22    St. Mark's School of Texas
+
+"Generative Snowflake Challenge"
+Code Abstract: "To generate Snowflakes that randomly change and then to export them as a svg"
+Source(s): Designing Generative Systems w/ P5.js by Matthew Epler
+
+This program is free software: you can redistribute it and/or 
+modify it under the terms of the GNU General Public License v3
+ as published by the Free Software Foundation
+*/
+
+
+
 const CRYSTAL_SIZE = 150
 const SIDES = 6
 
@@ -34,28 +48,13 @@ function draw() {
     for (let y = 0; y < ROWS; y++) {
       const posX = START + (x * GRIDBOX)
       const posY = START + (y * GRIDBOX)
-      const crystal = new Crystal(posX, posY)
+      const crystal = makeCrystal({x: posX, y: posY})
       console.log(crystal)
       ALL_CRYSTALS.push(crystal)
     }
   }
 
   ALL_CRYSTALS.forEach(crystal => {
-    crystal.render()
+    drawCrystal(crystal)
   })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

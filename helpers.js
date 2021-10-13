@@ -1,4 +1,5 @@
-function hexagon (posX, posY, radius) {                     
+//This class basically compiles individual classes/functions that draw specific shapes to form the snowflake
+const hexagon = (posX, posY, radius) => {           //Forms hexagons           
   const rotAngle = 360 / 6
   beginShape()
   for (let i = 0; i < 6; i++) {
@@ -8,56 +9,50 @@ function hexagon (posX, posY, radius) {
   endShape(CLOSE)
 }
 
-function pointOnCircle (posX, posY, radius, angle) {         
+const pointOnCircle = (posX, posY, radius, angle) => { // Forms the Poins and repating points in the snowflake  
   const x = posX + radius * cos(angle)
   const y = posY + radius * sin(angle)
   return createVector(x, y)
 }
 
-function randomSelectTwo () {
+const randomSelectTwo = () => {
   const rando = random(1)
-  if (rando > 0.5) {
-    return true
-  } else {
-    return false
-  }
+  return rando > 0.5 ? true : false
 }
 
-function getRandomFromPalette () {
-  const rando2 = floor(random(0, PALETTE.length))
-  return PALETTE[rando2]
-}
-
-function randomSelectTwo () {
-  const rando = random(2)
-  return rando > 1 ? true : false
-}
-
-function getRandomFromPalette () {
+const getRandomFromPalette = () => {
   const rando = floor(random(0, PALETTE.length))
   return PALETTE[rando]
 }
 
-function testLines () {
-  let numShapes = randomSelectTwo() ? SIDES : SIDES * 2
-  const strokeColor = getRandomFromPalette()
+const testLines = (state) => {
+  state.numShapes = randomSelectTwo() ? state.sides : state.sides * 2
+  state.angle = 360 / state.numShapes
 
-  noFill()
-  stroke(PALETTE[0])
-  strokeWeight(1)
-  push()
-    translate(width/2, height/2)
-    ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)
-    stroke(strokeColor)
-    const angle = 360 / numShapes
-    for (let i = 0; i < numShapes; i++) {
-      line(0, 0, 0, CRYSTAL_SIZE / 2)  
-      rotate(angle)
+  return ({
+    name: 'testLines',
+    state,
+    render: () => {
+      stroke(state.layerColor)
+      noFill()
+      strokeWeight(state.thickStroke)
+      push()
+      // translate(width / 2, height / 2) //**
+      if (state.lines) {
+        for (let i = 0; i < 360 - 0.1; i += state.angle) { 
+          line(0, 0, 0, CRYSTAL_SIZE / 2)                  
+          rotate(state.angle)
+        }
+      }
+      if (state.circle) {
+        ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE)            
+      }
+      pop()
     }
-  pop()
+  })
 }
 
-function myTriangle (center, radius, direction) {
+const myTriangle = (center, radius, direction) => {
   if (direction) {
     beginShape();
     vertex(center + radius * cos(0), radius * sin(0));
@@ -76,67 +71,92 @@ function myTriangle (center, radius, direction) {
 const layerConstructors = [
   {
     name: 'Outline Shape',
-    init: () => new OutlineShape(),
+    init: (props) => outlineShape({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Centered Shape',
-    init: () => new CenteredShape(),
+    init: (props) => centeredShape({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Circles',
-    init: () => new Circles(),
+    init: (props) => circles({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Simple Lines',
-    init: () => new SimpleLines(),
+    init: (props) => simpleLines({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Dotted Lines',
-    init: () => new DottedLines(),
+    init: (props) => dottedLines({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Ring of Shapes',
-    init: () => new RingOfShapes(),
+    init: (props) => ringOfShapes({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.3
   },
   {
     name: 'Stepped Hexagons',
-    init: () => new SteppedHexagons(),
+    init: (props) => steppedHexagons({
+      ...props,
+      ...setState(state)
+    }),
     weight: 0.7
   },
   {
     name: 'Test Lines',
-    init: () => new TestLines(),
+    init: (props) => testLines({
+      lines: false, 
+      circle: false,
+      ...props,
+      ...setState(state)
+    }),
     weight: 1
   }
 ]
 
+const makeCrystal = (pos) => {
+  const layers = layerConstructors.map(lcon => {
+    let picker = random(1)
+    const draw = picker > lcon.weight
+    // const draw = lcon.name === 'Test Lines'
+    return lcon.init({
+      pos,
+      draw
+    })
+  })
+  return layers
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const drawCrystal = (crystal) => {
+  crystal.forEach(layer => {
+    if (layer.state.draw) {
+      push()
+      translate(layer.state.pos.x, layer.state.pos.y)
+      layer.render()
+      pop()
+    }
+  })
+}

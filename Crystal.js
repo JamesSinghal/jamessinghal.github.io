@@ -1,4 +1,4 @@
-class Crystal {
+class Crystal { //Actually draws the crystals by relying on the layers class 
   constructor(posX, posY) {
     this.x = posX
     this.y = posY
