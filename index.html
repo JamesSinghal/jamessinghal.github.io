@@ -10,19 +10,34 @@
   <script src="Layers.js"></script>
   <script src="Crystal.js"></script>
   <script src="helpers.js"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <style>
-    body {
-      margin-left: auto; 
-      margin-right: auto;
-      padding: 0;
+    html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: rgb(200,200,200);
+}
+button {
+    margin: 10px auto;
+    display: block;
+    padding: 1vh;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
     }
 
-    button {
-      float:center;
-    }
   </style>
   <!-- define the event or function called when the button is pressed -->
   <button onClick="saveSVG()">Save Vector Image</button>
