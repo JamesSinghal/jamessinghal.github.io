@@ -9,12 +9,18 @@ This program is free software: you can redistribute it and/or
 modify it under the terms of the GNU General Public License v3
  as published by the Free Software Foundation
 */
-
+function alternate(inputValue) {
+  if (inputValue%2 == 0) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
 function hexagon(xPosition, yPosition, radius) {
   const rotAngle = 360 / 6
   beginShape()
-  for (let i = 0; i < 6; i++) {
-    const thisVertex = pointOnCircle(xPosition, yPosition, radius, i * rotAngle)
+  for (let i = 0; i < 10; i++) {
+    const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*10), i * rotAngle)
     vertex(thisVertex.x, thisVertex.y)
   }
   endShape(CLOSE)
