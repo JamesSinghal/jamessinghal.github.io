@@ -17,10 +17,10 @@ function alternate(inputValue) {
   }
 }
 function hexagon(xPosition, yPosition, radius) {
-  const rotAngle = 360 / 6
+  const rotAngle = 360 / 12
   beginShape()
-  for (let i = 0; i < 10; i++) {
-    const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*10), i * rotAngle)
+  for (let i = 0; i < 12; i++) {
+    const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*20), i * rotAngle)
     vertex(thisVertex.x, thisVertex.y)
   }
   endShape(CLOSE)
@@ -92,7 +92,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.5
+    weight: 0.3
   },
   {
     name: 'Centered Shape',
@@ -100,7 +100,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.2
+    weight: 0.3
   },
   {
     name: 'Circles',
@@ -108,7 +108,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.3
+    weight: 0.4
   },
   {
     name: 'Simple Lines',
@@ -116,7 +116,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.1
+    weight: 0.3
   },
   {
     name: 'Dotted Lines',
@@ -124,7 +124,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.6
+    weight: 0.3
   },
   {
     name: 'Ring of Shapes',
@@ -132,7 +132,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.3
+    weight: 0.2
   },
   {
     name: 'Stepped Hexagons',
@@ -140,7 +140,7 @@ const layerConstructors = [
       ...props,
       ...setState(state)
     }),
-    weight: 0.1
+    weight: 0.3
   },
   {
     name: 'Test Lines',

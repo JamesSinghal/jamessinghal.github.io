@@ -13,9 +13,9 @@ modify it under the terms of the GNU General Public License v3
 
 const state = {
   SECTIONS: SECTIONS,
-  stepsOut: 8,
-  thinStroke: 1,
-  thickStroke: 3
+  stepsOut: 6,
+  thinStroke: 0.5,
+  thickStroke: 1.5
 }
 
 const setState = (state) => {
@@ -205,7 +205,8 @@ const steppedHexagons = (state) => {
       rotate(state.angle / 2) 
       for (let i = 1; i < state.numSteps + 1; i++) {
         push()
-        rotate(i*10)
+        stroke(getRandomFromCOLOR_ARRAY())
+        rotate(i*3)
         hexagon(0, 0, state.centerOffset + (i * state.singleStep))
         pop()
       }

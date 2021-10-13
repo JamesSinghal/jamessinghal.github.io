@@ -32,7 +32,9 @@ function setup() {
 
   COLOR_ARRAY = [
     color(random(1)*100+155, random(1)*100+155, random(1)*100+155), // Light random
-    color(random(1)*150, random(1)*150, random(1)*150) // Dark random
+    color(random(1)*150, random(1)*150, random(1)*150), // Dark random
+    color(random(1)*70, random(1)*70, random(1)*70), // Very dark random
+    color(random(1)*255,random(1)*255,random(1)*255)
   ]
 
   noLoop()
