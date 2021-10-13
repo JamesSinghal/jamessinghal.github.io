@@ -1,35 +1,37 @@
-class Layer {
-  constructor() {
-    this.sides = SIDES
-    this.numShapes = this.sides
-    this.angle = 360 / this.numShapes
-    this.stepsOut = 8
-    this.singleStep = (CRYSTAL_SIZE / 2) / this.stepsOut
-    this.thinStroke = 1
-    this.thickStroke = 3
-    this.layerColor = getRandomFromPalette()
-  }
+const state = {
+  sides: SIDES,
+  stepsOut: 8,
+  thinStroke: 1,
+  thickStroke: 3,
 }
 
-class Circles extends Layer {
-  constructor() {
-    super()
-    this.shapeSize = (CRYSTAL_SIZE / 2) * 0.93
-    this.position = (CRYSTAL_SIZE / 2) - (this.shapeSize / 2)
-  }
+const setState = (state) => {
+  state.numShapes = state.sides,
+  state.angle = 360 / state.numShapes,
+  state.singleStep = (CRYSTAL_SIZE / 2) / state.stepsOut,
+  state.layerColor = getRandomFromPalette()
+  return state
+}
 
-  render() {
-    noFill()
-    stroke(this.layerColor)
-    strokeWeight(1)
-    push()
-    //translate(width/2, height/2)
-    for (let i = 0; i <= this.numShapes; i++) {
-      ellipse(this.position, 0, this.shapeSize, this.shapeSize)
-      rotate(this.angle)
+const circles = (state) => {
+  state.shapeSize = (CRYSTAL_SIZE / 2) * 0.93
+  state.position = (CRYSTAL_SIZE / 2) - (state.shapeSize / 2)
+  
+  return ({
+    name: 'circles',
+    render: () => {
+      noFill()
+      stroke(state.layerColor)
+      strokeWeight(1)
+      push()
+      //translate(width/2, height/2)
+      for (let i = 0; i <= state.numShapes; i++) {
+        ellipse(state.position, 0, state.shapeSize, state.shapeSize)
+        rotate(state.angle)
+      }
+      pop()
     }
-    pop()
-  }
+  })
 }
 
 class SimpleLines extends Layer {
