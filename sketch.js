@@ -12,13 +12,13 @@ modify it under the terms of the GNU General Public License v3
 
 
 
-const CRYSTAL_SIZE = 200
-const SIDES = 10
+const CRYSTAL_SIZE = 150
+const SIDES = 6
 
 // layout
 const MARGIN = CRYSTAL_SIZE / 2
-const COLUMNS = 5
-const ROWS = 2
+const COLUMNS = 3
+const ROWS = 4
 const PADDING = CRYSTAL_SIZE * 0.2
 const GRIDBOX = CRYSTAL_SIZE + PADDING
 const START = (CRYSTAL_SIZE / 2) + MARGIN
@@ -30,11 +30,10 @@ function setup() {
   const totalX = START + GRIDBOX * COLUMNS
   const totalY = START + GRIDBOX * ROWS
   createCanvas(totalX, totalY, SVG)
-s
+
   PALETTE = [
-    // Define the two colors with random values
-    color(random(1)*255, random(1)*255, random(1)*255),
-    color(random(1)*255, random(1)*255, random(1)*255) 
+    color(255, 52, 154), // pink
+    color(4, 0, 152) // blue
   ]
 
   noLoop()
