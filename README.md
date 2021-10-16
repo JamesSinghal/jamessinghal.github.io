@@ -1,4 +1,4 @@
-## Generative Design
+## Generative Crystal Design
 
 Source derived from Matthew Epler
 
