@@ -22,14 +22,17 @@ const PADDING = CRYSTALWIDTH * 0.2
 const GRID_PATTERN = CRYSTALWIDTH + PADDING
 const START = (CRYSTALWIDTH / 2) + MARGIN
 
+// Instantiate arrays
 let COLOR_ARRAY = []
-CRYSTAL_ARRAY = []
+let CRYSTAL_ARRAY = []
 
 function setup() {
   const totalX = START + GRID_PATTERN * COLUMNS
   const totalY = START + GRID_PATTERN * ROWS
+  // Create canvas with SVG backend
   createCanvas(totalX, totalY, SVG)
-
+  // Create four random colors with different offsets and variances to ensure they work
+  // together well
   COLOR_ARRAY = [
     color(random(1)*100+155, random(1)*100+155, random(1)*100+155), // Light random
     color(random(1)*150, random(1)*150, random(1)*150), // Dark random

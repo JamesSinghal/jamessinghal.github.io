@@ -10,7 +10,11 @@ modify it under the terms of the GNU General Public License v3
  as published by the Free Software Foundation
 */
 
-// Define the Crystal class for use later; the class allows us to easily reuse code and varibles for the many different crystals drawn
+/* Crystal.js creates the class and constructor function for each crystal,
+ * called while creating each crystal in the grid.
+ * The constructor is passed the center position of the crystal being draw.
+ */
+
 
 class Crystal { 
   // Constructor is what is called when an instance of the class is created with new Crystal(); in this case it would be new Crystal(xPosition, yPosition)
@@ -28,9 +32,10 @@ class Crystal {
       }
     })
   }
-
+// Render function called later
   render() {
     push()
+    // Translate position of crystal to position defined with constructor
     translate(this.x, this.y)
     this.layers.forEach(layer => {
       layer.render()

@@ -16,9 +16,11 @@ function alternate(inputValue) {
     return 0;
   }
 }
+// Base hexagon draw funciton modified to draw with 12 verticies instead of 6
 function hexagon(xPosition, yPosition, radius) {
   const rotAngle = 360 / 12
   beginShape()
+	// draw 12 verticies with offsets
   for (let i = 0; i < 12; i++) {
     const thisVertex = pointOnCircle(xPosition, yPosition, radius - (alternate(i)*30), i * rotAngle)
     vertex(thisVertex.x, thisVertex.y)
@@ -26,22 +28,27 @@ function hexagon(xPosition, yPosition, radius) {
   endShape(CLOSE)
 }
 
+// Helper function to find a point on a circle given the center position, angle, and radius
 function pointOnCircle(xPosition, yPosition, radius, angle) {
   const x = xPosition + radius * cos(angle)
   const y = yPosition + radius * sin(angle)
   return createVector(x, y)
 }
 
+// Random helper function
 function randomSelectTwo() {
   const rando = random(1)
+  // Ternary operator, chooses the options based on the logic statement before the question mark
   return rando > 0.5 ? true : false
 }
 
+// Helper to select a random color from the color array in sketch.js
 function getRandomFromCOLOR_ARRAY() {
   const rando = floor(random(0, COLOR_ARRAY.length))
   return COLOR_ARRAY[rando]
 }
 
+// Function used earlier in the code to test funcitonality
 function testLines(state) {
   state.numShapes = randomSelectTwo() ? state.SECTIONS : state.SECTIONS * 2
   state.angle = 360 / state.numShapes
@@ -69,6 +76,7 @@ function testLines(state) {
   })
 }
 
+// Function used earlier for testing
 function myTriangle(center, radius, direction) {
   if (direction) {
     beginShape()
@@ -85,6 +93,8 @@ function myTriangle(center, radius, direction) {
   }
 }
 
+
+// Definitions for the "weights" or probabilities for each feature in the crystals
 const layerConstructors = [
   {
     name: 'Outline Shape',

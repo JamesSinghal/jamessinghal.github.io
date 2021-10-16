@@ -10,7 +10,14 @@ modify it under the terms of the GNU General Public License v3
  as published by the Free Software Foundation
 */
 
+/* Layers.js defines many of the functions used to draw the different shapes
+ * for the compositions of the crystals.
+ */
 
+
+// struct to hold common constant variables used throughout the drawings
+//
+// Allows easy editing of constants
 const state = {
   SECTIONS: SECTIONS,
   stepsOut: 6,
@@ -18,6 +25,9 @@ const state = {
   thickStroke: 1.5
 }
 
+// These following "functions" add constant variables to the state structure
+// Their syntax essentially passes the state struct into the setState function and 
+// restates/adds certain variables
 const setState = (state) => {
   state.numShapes = state.SECTIONS,
   state.angle = 360 / state.numShapes,
@@ -26,6 +36,9 @@ const setState = (state) => {
   return state
 }
 
+// First function to draw a shape, these function by passing a render() function
+// to the next function that draws the crystals based on probabilities defined
+// in helpers.js
 const circles = (state) => {
   state.shapeSize = (CRYSTALWIDTH / 2) * 0.93
   state.position = (CRYSTALWIDTH / 2) - (state.shapeSize / 2)
@@ -33,6 +46,7 @@ const circles = (state) => {
   return ({
     name: 'circles',
     state,
+	  // defining render function
     render: () => {
       noFill()
       stroke(state.layerColor)
@@ -48,6 +62,8 @@ const circles = (state) => {
   })
 }
 
+// Second function to draw, functions similar to above with different variables
+// and shape drawn.
 const simpleLines = (state) => {
   state.numSteps = randomSelectTwo() ? state.stepsOut : int(state.stepsOut * 1.25)
   state.step = (CRYSTALWIDTH / 2) / state.numSteps
@@ -75,6 +91,10 @@ const simpleLines = (state) => {
   })
 }
 
+// Function to draw the outline of the crystal using shape functions defined 
+// in helpers.js
+// Same structure as above returns a function rather than a pre-drawn shape
+// to allow recursion and flexibility
 const outlineShape = (state) => {
   state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke
   state.hexagonTrue = randomSelectTwo()
@@ -86,8 +106,8 @@ const outlineShape = (state) => {
       stroke(state.layerColor)
       strokeWeight(state.weight)
       push()
-      //translate(width/2, height/2)
       if (state.hexagonTrue) {
+	      //defined in helpers.js
         hexagon(0, 0, CRYSTALWIDTH / 2)
       } else {
         ellipse(0, 0, CRYSTALWIDTH, CRYSTALWIDTH)
@@ -97,6 +117,7 @@ const outlineShape = (state) => {
   })
 }
 
+// Return draw function for Dotted Lines
 const dottedLines = (state) => {                           
   state.numShapes = randomSelectTwo() ? state.SECTIONS : state.SECTIONS * 2
   state.angle = 360 / state.numShapes
@@ -110,7 +131,7 @@ const dottedLines = (state) => {
       fill(state.layerColor)
       noStroke()
       push()
-      //translate(width / 2, height / 2)
+      // iterate through number of shapes, decided by random
       for(let i = 0; i <= state.numShapes; i++) {
         for(let x = state.centerOffset; x < CRYSTALWIDTH / 2; x += state.singleStep) {
           rect(x, 0, state.shapeSize, state.shapeSize)
@@ -122,6 +143,7 @@ const dottedLines = (state) => {
   })
 }
 
+// Draw the selected shape for the center of the crystal, based on random()
 const centeredShape = (state) => {                     
   state.randomShape = random(1)
   state.shapeSize = floor(random(state.stepsOut / 2, state.stepsOut - 2)) * state.singleStep
@@ -147,11 +169,15 @@ const centeredShape = (state) => {
   })
 }
 
-const ringOfShapes = (state) => {                    
+// Draws the ring of shapes based on random() using draw functions defined in helpers.js
+//
+
+const ringOfShapes = (state) => {
+  // Define the local state variables used for this draw function
   state.steps = floor(random(1, state.stepsOut))
   state.center = state.steps * state.singleStep
   state.randomShape = random(1)
-  state.direction = randomSelectTwo() // used for triangle only
+  state.direction = randomSelectTwo() 
   state.fillColor = randomSelectTwo() ? state.layerColor : color(0, 1)
   state.weight = randomSelectTwo() ? state.thinStroke : state.thickStroke
 
@@ -171,7 +197,8 @@ const ringOfShapes = (state) => {
       fill(state.fillColor)
       strokeWeight(state.weight)
       push()
-      //translate(width / 2, height / 2)
+      // Iterate through the shapes, decided based on random inside the if 
+	    // statement
       for (let i = 0; i < state.numShapes; i++) {
         if (state.randomShape < 0.33) {
           ellipse(0, state.center, state.radius, state.radius)
@@ -187,6 +214,9 @@ const ringOfShapes = (state) => {
   })
 }
 
+// Stepped hexagon draw, based on hexagon() in helpers.js
+//
+// Rotate per iteration to create gentle spiral
 const steppedHexagons = (state) => {                 
   state.numSteps = randomSelectTwo() ? state.stepsOut : state.stepsOut * 1.25
   state.centerOffset = (CRYSTALWIDTH / 2) * 0.15
